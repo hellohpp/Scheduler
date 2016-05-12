@@ -1,0 +1,161 @@
+﻿body {
+    font-family     :   Arial, Helvetica, sans-serif;
+}
+#wrapper{
+    margin          :   0px auto;
+    padding         :   0px;
+    min-width       :   440px;
+    max-width       :   1000px;
+    border          :   5px outset #333;
+    border-radius   :   5px;
+}
+.page-container{
+    width           :   100%;
+    padding         :   0px;
+    margin          :   0px;
+}
+.row{
+    width           :   100%;
+    clear           :   both;
+}
+.clear{
+    clear			:	both;
+}
+/***
+*   Header
+***/
+header{
+    min-height      :   80px;
+    margin-bottom  :   10px;
+}
+header .cell:first-child{
+    float           :   left;
+    width           :   20%;
+    height          :   100%;
+    text-align      :   center;
+}
+header .cell:nth-child(2){
+    float           :   left;
+    width           :   60%;
+    height          :   100%;
+    text-align      :   center;
+}
+header .cell:nth-child(3){
+    float           :   left;
+    width           :   20%;
+    color           :   #AEC8BE;
+    padding         :   25px 0px 0px 0px;
+    font-weight     :   bold;
+    font-size       :   2.8em;
+    text-align      :   center;
+}
+.menu-bars{
+    margin          :   25px 0px 0px 0px;
+    height          :   60px;
+    width           :   50%;
+}
+#top-menu {
+    width           :   100%;
+    font-size       :   3em;
+    font-weight     :   bold;
+    border          :   none;
+    list-style-type :   none;
+    margin          :   0px;
+    padding         :   25px 0px 0px 0px;
+}
+#top-menu > li{
+    display         :   none;
+    padding         :   5px 0px;
+    cursor          :   pointer;
+}
+#top-menu > li.active{
+    display         :   block;
+    background-color:   #FFF;
+}
+select::-ms-expand {
+    display			: 	none;                                                                                                                                                              
+}
+
+/***
+*   Footer
+***/
+footer{
+    height          :   225px;
+    width           :   100%;
+    background-color:   #9A9691;
+}
+footer .row .cell{
+    float           :   left;
+    width           :   50%;
+    text-align      :   center;
+}
+footer .row .cell button{
+    width           :   80%;
+    margin          :   10px auto;
+    height          :   205px;
+    border-radius   :   5px;
+    font-size       :   4em;
+}
+button.btn-submit{
+    background      :   #AEC8BE;
+    color           :   #FFF;    
+}
+button.btn-cancel{
+    background      :   #FF0000;
+    color           :   #FFF;    
+}
+
+/***
+*   Media Queries
+***/
+@media (min-width: 750px) and (max-width: 960px) {
+    select#top-menu{
+        font-size           :   2.6em;
+    }
+    header .cell:nth-child(3){
+        font-size           :   2.1em;
+        padding-top         :   55px;
+    }
+    header .cell:first-child{
+        width: 11%;
+    }
+    header .cell:nth-child(2) {
+        width: 67%;
+    }
+}
+@media (min-width: 560px) and (max-width: 749px) {
+        select#top-menu{
+        font-size           :   2.1em;
+    }
+    header .cell:nth-child(3){
+        font-size           :   1.8em;
+        padding-top         :   60px;
+    }
+    header .cell:first-child{
+        width: 1%;
+    }
+    header .cell:nth-child(2) {
+        width: 75%;
+    }
+    footer .row .cell button {
+        font-size          :   3.5em;
+    }
+}
+@media only screen and (max-width: 559px) {
+    select#top-menu{
+        font-size           :   1.8em;
+    }
+    header .cell:nth-child(3){
+        font-size           :   1.6em;
+        padding-top         :   62px;
+    }
+    header .cell:first-child{
+        width: 1%;
+    }
+    header .cell:nth-child(2) {
+        width: 75%;
+    }    
+    footer .row .cell button {
+        font-size          :   3.0em;
+    }
+}

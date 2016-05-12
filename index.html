@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html ng-app="store">
+<head>
+    <title>FPD Overtime System</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+<body>
+    <div id="wrapper" ng-controller="MainController as mainCtrl">
+        <form>
+            <header>
+                <div class="cell">
+                    <img src="images/menu-bars.svg" class="menu-bars" ng-click="mainCtrl.PageSelected(mainCtrl.pages)" />
+                </div>
+                <div class="cell">
+                    <ul id="top-menu"> 
+                        <li ng-click="mainCtrl.PageSelected(page)" ng-repeat="page in mainCtrl.pages" ng-class="{active: mainCtrl.IsPageSelected(page)}">{{page.name}}</li>
+                    </ul>
+                </div>
+                <div class="cell mainSubmit">
+                    <label>Done</label>
+                </div>
+                <div class="clear"></div>
+            </header>
+            <div class="page-container" ng-include="mainCtrl.DisplaySelectedPage()"></div>
+            <footer>
+                <div class="row">
+                    <div class="cell">
+                        <button type="submit" class="btn-submit">Submit</button>
+                    </div>
+                    <div class="cell">
+                        <button type="reset" class="btn-cancel">Clear</button>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </footer>
+        </form>
+    </div>
+    <script src="scripts/jquery-2.1.4.min.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿<link rel="stylesheet" type="text/css" href="css/availibility.css" />
+<script src="scripts/availibility.js"></script>
+<section class="available-header" ng-controller="WeekAvailableController as availableWeek">
+    <div class="week-tabs">
+        <div class="tab1" ng-class="{active : availableWeek.tab === 1}">
+            <a href="#" ng-click="availableWeek.ReloadRoute(1)">This Week</a>
+        </div>
+        <div class="tab2" ng-class="{active : availableWeek.tab === 2}">
+            <a href="#" ng-click="availableWeek.ReloadRoute(2)">Next Week</a>
+        </div>
+    </div>
+</section>
+<section class="content" ng-controller="WeekController as week">
+    <ul class="week-list">
+        <li ng-repeat="day in week.days">
+            <div class="day-container">
+                <label class="day-title" ng-class="day.labelClass" ng-click="{active:week.ToggleActive(day)}">{{day.name}}</label>
+                <div class="row weather-item top-border" ng-show="day.showDay">
+                    <div class="cell">
+                        <img class="weather-icon" ng-src="{{day.weather.am}}" />
+                    </div>
+                    <div class="cell temperature">
+                        {{day.temp.am}}<span class="temp-degree">&#8457;</span>
+                    </div>
+                    <div class="cell time">
+                        {{week.am}}
+                    </div>
+                    <div class="cell">
+                        <div class="onoffswitch">
+                            <input type="checkbox" name="{{day.name}}OnOffSwitch" class="onoffswitch-checkbox" id="{{day.name}}OnOffSwitch-am" checked>
+                            <label class="onoffswitch-label" for="{{day.name}}OnOffSwitch-am">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row weather-item" ng-show="day.showDay">
+                    <div class="cell">
+                        <img class="weather-icon" ng-src="{{day.weather.pm}}" />
+                    </div>
+                    <div class="cell temperature">
+                        {{day.temp.pm}}<span class="temp-degree">&#8457;</span>
+                    </div>
+                    <div class="cell time">
+                        {{week.pm}}
+                    </div>
+                    <div class="cell">
+                        <div class="onoffswitch">
+                            <input type="checkbox" name="{{day.name}}OnOffSwitch" class="onoffswitch-checkbox" id="{{day.name}}OnOffSwitch-pm" checked>
+
+                            <label class="onoffswitch-label" for="{{day.name}}OnOffSwitch-pm">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </li>
+    </ul>
+</section>

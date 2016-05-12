@@ -1,0 +1,307 @@
+﻿h2{
+    margin: 5px 0px
+}
+
+/***
+*   Header
+***/
+.job-header{
+    height:100px;
+    margin: 0px;
+    padding: 10px 3%;
+    border-top: 3px inset #96928D;
+    border-bottom: 3px inset #555;
+    background-color: #111;
+}
+div.week-tabs{
+    margin: 0px auto;
+    padding-top:5px;
+    width: 100%;
+}
+div.week-tabs > div{
+    float: left;
+    height: 80px;
+    width:49.1%;
+    background-color:#FFF;
+    padding-top: 10px;
+}
+div.week-tabs > .tab1{
+    border-top: 2px solid #9B8F74;
+    border-top-left-radius: 2px;
+    border-bottom: 2px solid #9B8F74;
+    border-bottom-left-radius: 2px;
+    border-left: 2px solid #9B8F74;
+}
+div.week-tabs > .tab2{
+    border-top: 2px solid #9B8F74;
+    border-top-right-radius: 2px;
+    border-bottom: 2px solid #9B8F74;
+    border-bottom-right-radius: 2px;
+    border-right: 2px solid #9B8F74;
+}
+div.week-tabs > div.active{
+    background-color:#B8A16F;
+}
+div.week-tabs > div.active a {
+    color: #FFF;
+    text-decoration: none;
+    font-weight:bold;
+    text-align:center;
+    display:block;
+}
+div.week-tabs > div a {
+    color: #B8A16F;
+    text-decoration: none;
+    font-weight:bold;
+    font-size: 3em;
+    text-align:center;
+    display             :   block;
+    padding-top         :   5px;
+}
+/***
+*   Content
+***/
+.content{
+    background:#555;
+    clear:both;
+    padding:10px 7px;
+}
+ul.week-list{
+    list-style-type: none;
+    width:100%;
+    margin:0px;
+    padding:0px;
+    background-color:#FFF;
+}
+ul.week-list > li{
+    border-bottom: 5px solid #555;
+    color:#B8A16F;
+    text-align: center;
+    text-transform:capitalize;
+    font-weight:bold;
+    height:100%;
+    width: 100%;
+}
+.job-day.row {
+    height          :   300px;
+    width           :   100%;
+    background      :   #000 url('../images/job-summary-bck.svg') no-repeat top left; 
+    background-size :   100% 100%; 
+}
+.job-cell:first-child, .job-cell:last-child{
+    float           :   left;
+    height          :   100%;
+    width           :   20%;
+    z-index         :   100;
+}
+.job-cell:nth-child(2){
+    float           :   left;
+    width           :   60%;
+    z-index         :   100;
+    padding-top     :   80px;
+}
+img.weather-icon{
+    height          :   90%;
+}
+label.temperature{
+    display         :   block;
+    color           :   #B8A16F;
+    font-size       :   2.7em;
+}
+.bottom-right-block label.temperature{
+    color           :   #FFF;
+}
+.top-left-block, .bottom-right-block{
+    width           :   100%;
+    height          :   40%;
+}
+.bottom-left-block, .top-right-block{
+    width           :   100%;
+    height          :   40%;
+}
+label.job-title {
+    width           :   100%;
+    font-size       :   5.5em;
+}
+label.job-subtitle {
+    width           :   100%;
+    font-size       :   4em;
+}
+.row.job-items{
+    margin-top      :   0px;
+    background-color:   #AEC8BE;
+    clear           :   both;
+    font-weight     :   normal;
+    display         :   block;
+    width           :   100%;
+    color           :   #000;
+}
+label.active-color {
+    color           :   #AEC8BE;
+}
+ul.job-list{
+    list-style-type: none;
+    width:100%;
+    margin:0px;
+    padding             :   0px;
+    background-color    :   #FFF;
+}
+ul.job-list > li{
+    border-bottom       :   1px solid #888;
+}
+.row.job-summary{
+    background          :   #F6F7FA;
+    text-align          :   left;
+    height              :   100%;
+}
+.job-item{
+    width               :   96%;
+    font-size           :   2.7em;
+    padding             :   5px 0px 5px 2%;
+    color               :   #555;
+}
+.row.job-place{
+    width               :   98%;
+    font-size           :   3em;
+    padding             :   5px 0px 5px 2%;
+}
+.row.job-address{
+    width               :   98%;
+    font-size           :   2.0em;
+    padding             :   5px 0px 5px 2%;
+}
+.row.job-time{
+    width               :   98%;
+    font-size           :   2.7em;
+    padding             :   5px 0px 5px 2%;
+}
+select::-ms-expand{
+    display: none;
+}
+section.job-details{
+     background-color   :   #FFF;
+}
+.job-details > .row{
+    padding             :   10px;
+    font-size           :   2.0em;
+}
+.job-details > .row:nth-child(2){
+    text-align          :   center;
+}
+.job-details > .row > h2{
+    font-size           :   3.0em;
+    font-weight         :   bold;
+}
+.job-details > .row > label{
+    font-weight         :   bold;
+    font-size           :   2.06em;
+}
+.job-details > .row > .priority{
+    padding             :   20px 13px;
+    border              :   3px solid #555;
+    border-radius       :   7px;
+    width               :   80px;
+    text-align          :   center; 
+    font-weight         :   bold;
+    font-size           :   2.2em; 
+}
+.cbxAcceptJob{
+    width               :  40px;
+    height              :  40px;
+    margin-left         :  20px;
+}
+select.reason{
+    width               :   50%;
+    border-radius       :   10px;
+    height              :   50px;
+    padding             :   5px;
+    font-size           :   1.0em;
+    margin-top          :   10px;
+    text-align          :   center;
+    -webkit-appearance  :   none;
+    -moz-appearance     :   none;
+    text-indent         :   1px;
+    text-overflow       :   '';
+    background          : #ffffff; /* Old browsers */
+    background          : -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* FF3.6+ */
+    background          : -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
+    background          : -webkit-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Chrome10+,Safari5.1+ */
+    background          : -o-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Opera 11.10+ */
+    background          : -ms-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* IE10+ */
+    background          : linear-gradient(to bottom, #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* W3C */
+    filter              : progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+}
+.hide-job-details{
+    font-size           :   1.1em;
+    color               :   #808080; 
+    text-decoration     :   underline;
+    width               :   95%;
+    text-align          :   right;
+}
+/***
+*   Media Query
+***/
+@media (min-width: 620px) and (max-width: 780px) {
+    div.week-tabs > div a {
+        font-size           :   2.5em;
+        padding-top         :   10px;
+    }
+    .row.job-details > .row:first-child {
+        font-size           :   1.3em;
+    }
+    img.weather-icon{
+        height              :   85%
+    }
+    label.job-title{
+        font-size           :   4.0em;
+    }
+    label.job-subtitle{
+        font-size           :   4em;
+    }
+    select.reason{
+        width               :   75%;
+    }
+}
+@media only screen and (max-width: 619px) {
+    div.week-tabs > div a{
+        font-size           :   2em;
+        padding-top         :   15px;
+    }
+    .row.job-details > .row:first-child {
+        font-size           :   1.1em;
+    }
+    img.weather-icon{
+        height              :   80%
+    }
+    label.job-title{
+        font-size           :   3em;
+    }
+    label.job-subtitle{
+        font-size           :   2.5em;
+    }
+    section.job-details{
+        padding             :   10px;
+    }
+    .job-details > .row > h2{
+        font-size           :   2.1em;
+    }
+    .job-details > .row > label{
+        font-size           :   1.7em;
+    }
+    .job-details > .row{
+        font-size           :   1.9em;
+    }
+    .job-details > .row > .priority{
+        padding             :   15px;
+        width               :   80px;
+        font-size           :   1.7em; 
+    }
+    .cbxAcceptJob{
+        width               :  40px;
+        height              :  40px;
+        margin-left         :  20px;
+    }
+    select.reason{
+        width               :   94%;
+    }
+}
