@@ -1,0 +1,12 @@
+.row-fluid.logo{
+	margin-top:	50px;
+	text-align: center;
+}
+.img{
+	display: none;
+	margin: 0px auto;
+}
+#message.alert{
+	text-align: center;
+	display: none;
+}

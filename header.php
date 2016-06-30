@@ -1,6 +1,7 @@
 <?php
     ob_start();
     session_start();
+	
     if (empty($_SESSION['USER_ID'])) {
         header('Location:./index.php');
         return false;
@@ -13,6 +14,7 @@
 
     $users = mysqli_query($link, "SELECT * FROM `tbl_users` WHERE `user_id`='" . $_SESSION['USER_ID'] . "'");
     $user = mysqli_fetch_assoc($users);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,7 +47,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="profile.php">Account Info</a></li>
-                <?php if ($_SESSION['ROLE'] == 'ADMIN') { ?>
+                <?php if ($_SESSION['ROLE'] == 'ADMIN') {?>
                     <li><a href="security.php">Security Questions</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Jobs
@@ -75,6 +77,7 @@
     </div><!-- /.container-fluid -->
 </nav>
 <?php
+
     $cur = current_page();
     $explode = explode(".", $cur);
 ?>

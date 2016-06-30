@@ -1,8 +1,8 @@
 <?php
     $server_name = "localhost";
-    $db_name = "bhargavc_police";
-    $user_name = "bhargavc_police";
-    $db_pswd = "Police!2345";
+    $db_name = "otsys";
+    $user_name = "jwilson";
+    $db_pswd = "S@sco13";
     $link = mysqli_connect($server_name, $user_name, $db_pswd, $db_name);
     if (!$link) {
         echo "Error: Unable to connect to MySQL." . PHP_EOL;
