@@ -16,19 +16,16 @@
 			switch ($id) {
 				case 1:
 					return "Failed to connect to database.";
-					break;
 				case 2:
 					return "Failed to execute query.";
-					break;
 				case 3:
 					return "Successfully saved to database.";
-					break;
 				case 4:
 					return "Failed to execute SQL statement.";
-					break;				
 				case 5:
 					return "Please contact the System Administrator.";
-					break;
+				case 6:
+					return "System page not present in Pages table in database.";				
 				default:
 					return "Unknown message";
 					break;

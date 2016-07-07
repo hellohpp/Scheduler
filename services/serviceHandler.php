@@ -12,11 +12,19 @@
 	switch ($_SERVER['REQUEST_METHOD']) {
 	
 		// Save a new record in the database
-		case 'POST':			
-//			$result = $bt->ValidateUser(trim( $_POST["userName"]), trim($_POST["userPass"]), trim($_POST["errorMsg"]) );
-			switch( $request->functionName ){
-				case "login":
-					$result = $bt->ValidateUser(trim($request->userName), trim($request->userPass), trim($request->errorMsg) );
+		case 'POST':	
+			switch( $request->sessionData->eventName ){
+				case "ResetPassword":
+					$result = $bt->ResetPassword(trim($request->resetPassword), $request->sessionData, trim($request->errorMsg));
+					break;
+				case "ValidateAnswers":
+					$result = $bt->ValidateAnswers($request->questions, $request->sessionData, trim($request->errorMsg));
+					break;
+				case "ResetRequest":
+					$result = $bt->GetResetQuestions($request->sessionData, trim($request->errorMsg));
+					break;
+				case "Login":
+					$result = $bt->ValidateUser(trim($request->userPass), $request->sessionData, trim($request->errorMsg));
 					break;
 				default:
 					$result = $log->WriteToLog( 5, "Angular.js function is unknown" );

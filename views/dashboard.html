@@ -1,19 +1,5 @@
-<?php
-$title = "Job Lists";
-include_once 'header.php';
-if (isset($_POST['submit'])) {
-    $job_id = $_POST['jobs_id'];
-    $user_id = $_POST['user_id'];
-    //$date = date('Y-m-d H:i:s');
-    $insert = mysqli_query($link, "INSERT INTO `tbl_applied_jobs` (`job_id`,`user_id`,`applied_time`) VALUES ('$job_id','$user_id',NOW())");
-    if ($insert == true) {
-        $message = "<div class='alert alert-success'> Job Posted Successfully ..!</div>";
-        header("refresh:1;url=" . $_SERVER['PHP_SELF']);
-    } else {
-        $message = "<div class='alert alert-danger'>Fail to apply job " . $insert . "</div>";
-    }
-}
-?>
+<link rel="stylesheet" href="css/dashboard.css" />
+
 <section class="container">
     <div><?= !empty($message) ? $message : ""; ?></div>
     <article class="table-list">
