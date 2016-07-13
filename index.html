@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="oss">
+<html lang="en" ng-app="wfd-scheduler">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<title>FPD Overtime System</title>
+		<title>Scheduling System</title>
 		
 		<link rel="shortcut icon" type="image/x-icon" href="images/police-icon.ico"> 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -20,22 +20,15 @@
 	<body ng-controller="MainCtrl">
 		<header>
 			<nav class="navbar navbar-inverse">
-				<div class="container-fluid">
+				<div class="container-fluid">					
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topMenu" ng-show="ShowTopMenu(viewName)">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span> 
-						</button>
-						<a class="navbar-brand" href="#">FPD</a>
-					</div>
-					<div class="collapse navbar-collapse" id="topMenu">
-						<ul class="nav navbar-nav" ng-show="ShowTopMenu(viewName)">
-							<li ng-repeat="menuItem in mainMenu" ng-class="{ active: isActive('/' + menuItem.shortname )}">
-								<a href="#{{menuItem.shortname}}">{{menuItem.fullname}}</a>
-							</li> 		
-						</ul>
-					</div>
+						<a href="#dashboard" class="navbar-brand">Scheduler</a>
+					</div>					
+					<ul class="nav navbar-nav navbar-right" ng-show="ShowTopMenu(viewName)">
+						<li><a ng-class="{active: IsActive('')}" href="#dashboard"><span class="glyphicon glyphicon-calendar"></span> Calendar</a></li>
+						<li><a ng-class="{active: IsActive('admin')}" href="#admin"><span class="glyphicon glyphicon-user"></span> Admin</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+					</ul>
 				</div>
 			</nav>
 		</header>

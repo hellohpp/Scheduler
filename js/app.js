@@ -1,4 +1,4 @@
-﻿var app = angular.module('oss', ['ngRoute']);
+﻿var app = angular.module('wfd-scheduler', ['ngRoute']);
 
 app.config(function($routeProvider, $locationProvider) {
 	$routeProvider.
@@ -19,35 +19,22 @@ app.config(function($routeProvider, $locationProvider) {
 		});		
 });
 
-app.controller('MainCtrl', function($scope, $location, locationHandler, $window, $route, $anchorScroll) {	
-
-    $scope.viewName = ($location.path() == "") ? 'login' : $location.path().substring(1);
+/***
+*	Dashboard Controller
+***/
+app.controller('DashboardCtrl', function($scope, $http, locationHandler, $location, userSession) {
 	
-	/***	Objects		***/
-	$scope.mainMenu = [
-		{id: 0, shortname: "account", fullname:"My Account"}, 
-		{id: 1, shortname: "jobs", fullname: "Jobs"},
-		{id: 2, shortname: "admin", fullname: "Administration"}
-	];
-	
-	/***	Functions	***/
-	$scope.$on("$locationChangeStart", function(e, currentLocation, previousLocation){
-		locationHandler.setPreviousLocation(previousLocation);
-		locationHandler.setCurrentLocation(currentLocation);
-	});	
-	
-	$scope.ShowTopMenu = function(viewName) {
-		var nonSessionViews = ["login", "reset"]
-		return (nonSessionViews.indexOf(viewName) == -1 );
-	}
 });
 
-app.controller('ResetCtrl', function($scope, $http, $location, locationHandler, userSession) {
+/***
+*	Reset Controller
+***/
+app.controller('ResetCtrl', function($scope, $location, locationHandler, userSession) {
 
 	var showPanel = "username";
 	var message = document.getElementById("message1");
 	message.textContent = "";
-	userSession.setSession("", locationHandler.getCurrentPageName(), "ResetRequest", new Date());
+	userSession.setSessionData("", locationHandler.getCurrentPageName(), "ResetRequest", new Date())
 	$scope.resetQuestions = [];
 	
 	$scope.ShowPanel = function(){
@@ -63,7 +50,7 @@ app.controller('ResetCtrl', function($scope, $http, $location, locationHandler, 
 			method: "post",
 			url: "services/serviceHandler.php",
 			data: {				
-				sessionData: userSession,
+				sessionData: userSession.getSessionData(),
 				errorMsg: "Your username could not be found. Please try again."
 			},
 			headers: { 'Content-Type' : 'application/json' }
@@ -95,7 +82,7 @@ app.controller('ResetCtrl', function($scope, $http, $location, locationHandler, 
 			url: "services/serviceHandler.php",
 			data: {
 				questions: $scope.resetQuestions,
-				sessionData: userSession,
+				sessionData: userSession.getSessionData(),
 				errorMsg: "Please try again."
 			},
 			headers: { 'Content-Type' : 'application/json' }
@@ -126,7 +113,7 @@ app.controller('ResetCtrl', function($scope, $http, $location, locationHandler, 
 				url: "services/serviceHandler.php",
 				data: {
 					resetPassword: newPassword.pass1,
-					sessionData: userSession,
+					sessionData: userSession.getSessionData(),
 					errorMsg: "Your password could not be reset. Please try again."
 				},
 				headers: { 'Content-Type' : 'application/json' }
@@ -153,17 +140,22 @@ app.controller('ResetCtrl', function($scope, $http, $location, locationHandler, 
 	}	// End function ResetPassword
 });
 
-app.controller('LoginCtrl', function($scope, $http, locationHandler, $location, userSession) {
+/***
+*	Login Controller
+***/
+app.controller('LoginCtrl', function($scope, locationHandler, $location, userSession) {
 	
+	// Alert the user that their password was successfully reset if returning from reset password page
 	var message = document.getElementById("message");
-	if( userSession.getEventName == "ResetPassword" ){
+	if( userSession.getEventName() == "ResetPassword" ){
 		message.textContent = "Your password has been reset. Please enter your new password.";
 		message.className = "alert alert-success";
 		message.style.display = "block";		
 	} else {	
 		message.textContent = "";
-	}
-	userSession.setSession("", locationHandler.getCurrentPageName(), "Login", new Date());
+	}	
+	
+	userSession.setSessionData("", locationHandler.getCurrentPageName(), "Login", new Date());
 	
 	$scope.SignIn = function (user) {		
 	
@@ -174,7 +166,7 @@ app.controller('LoginCtrl', function($scope, $http, locationHandler, $location, 
 			url: "services/serviceHandler.php",
 			data: {
 				userPass: user.password,
-				sessionData: userSession,
+				sessionData: userSession.getSessionData(),
 				errorMsg: "Your credentials could not be validated. Please try again."
 			},
 			headers: { 'Content-Type' : 'application/json' }
@@ -195,41 +187,75 @@ app.controller('LoginCtrl', function($scope, $http, locationHandler, $location, 
 	}
 });
 
-app.factory('userSession', function() {
-    var session = {userId : "", pageName : "", eventName : "", eventTime : new Date()};
-    
-	session.getUserId = function(){
-		return session.userId;
+/***
+*	Main Controller
+***/
+app.controller('MainCtrl', function($scope, $location, locationHandler) {	
+
+    $scope.viewName = ($location.path() == "") ? 'login' : $location.path().substring(1);
+	
+	/***	Functions	***/
+	$scope.$on("$locationChangeStart", function(e, currentLocation, previousLocation){
+		locationHandler.setPreviousLocation(previousLocation);
+		locationHandler.setCurrentLocation(currentLocation);
+	});	
+	
+	$scope.ShowTopMenu = function(viewName) {
+		var nonSessionViews = ["login", "reset"]
+		return (nonSessionViews.indexOf(viewName) == -1 );
 	}
-	session.setUserId = function(value){
-		session.userId = value;
+	
+	$scope.IsActive = function(viewName){
+		return (viewName == '' && $location.path().substring(1) != 'admin' ) ? true : ( $location.path().substring(1) == viewName ) ? true : false;
 	}
-	session.getPageName = function(){
-		return session.pageName;
-	}
-	session.setPageName = function(value){
-		session.pageName = value;
-	}
-	session.getEventName = function(){
-		return session.eventName;
-	}
-	session.setEventName = function(value){
-		session.eventName = value;
-	}
-	session.getEventTime = function(){
-		return session.eventTime;
-	}
-	session.setEventTime = function(value){
-		session.eventTime = value;
-	}
-    session.getSession = function() {
-        return session;
+});
+
+app.factory('userSession', function () {
+	
+	//Private variables
+	var session = {
+        userId : "",
+		pageName : "",
+		eventName : "",
+		eventTime : new Date()
+    };	
+	
+	// Public functions
+    return {
+		getUserId : function(){
+			return session.userId;
+		},
+		setUserId : function(value){
+			session.userId = value;
+		},
+		getPageName : function(){
+			return session.pageName;
+		},
+		setPageName : function(value){
+			session.pageName = value;
+		},
+		getEventName : function(){
+			return session.eventName;
+		},
+		setEventName : function(value){
+			session.eventName = value;
+		},
+		getEventTime : function(){
+			return session.eventTime;
+		},
+		setEventTime : function(value){
+			session.eventTime = value;
+		},
+		getSessionData : function(){
+			return session;
+		},
+		setSessionData : function(UserId, PageName, EventName, EventTime) {
+			session.userId = UserId;
+			session.pageName = PageName;
+			session.eventName = EventName;
+			session.eventTime = EventTime;
+		}
     };
-	session.setSession = function(UserId, PageName, EventName, EventTime) {
-        session = {userId : UserId, pageName : PageName, eventName : EventName, eventTime : EventTime};
-    };
-    
-    return session;
 });
 
 app.factory('locationHandler', function() {
@@ -244,7 +270,7 @@ app.factory('locationHandler', function() {
         currentLocation = loc;
     };
 	locationService.getCurrentPageName = function() {
-		return currentLocation.slice(currentLocation.lastIndexOf("/") - currentLocation.length)
+		return currentLocation.slice((currentLocation.lastIndexOf("/") + 1) - currentLocation.length)
 	}
 	locationService.getPreviousLocation = function() {
         return previousLocation;
@@ -253,7 +279,7 @@ app.factory('locationHandler', function() {
         previousLocation = loc;
     };
 	locationService.getPreviousPageName = function() {
-		return previousLocation.slice(previousLocation.lastIndexOf("/") - previousLocation.length)
+		return previousLocation.slice((previousLocation.lastIndexOf("/") + 1) - previousLocation.length)
 	}
     
     return locationService;

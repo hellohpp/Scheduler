@@ -6,20 +6,21 @@
 		function ResetPassword($password, $sessionData, $errorMsg){	
 		
 			$dt = new DataTier;
-			$results = $dt->Upd_ResetPassword($sessionData->username, $password);
+			$results = $dt->Upd_ResetPassword($sessionData->userId, $password);
 			$i = 0;
 			
-			if( $results["id"] == 0 )							
+			if( $results["id"] == 0 ){							
 				$dt->Ins_SessionEvent($sessionData);
 				return array( "id" => 0, "message" => "" );
-			else
+			} else {
 				return array( "id" => $results["id"], "message" => $results["message"] );
+			}
 		}	// End function ResetPassword
 		
 		function ValidateAnswers($questions, $sessionData, $errorMsg){	
 		
 			$dt = new DataTier;
-			$results = $dt->Sel_ResetQuestions($sessionData->userName);
+			$results = $dt->Sel_ResetQuestions($sessionData->userId);
 			$i = 0;
 			
 			if( $results["id"] == 0 )
@@ -42,7 +43,7 @@
 		function GetResetQuestions($sessionData, $errorMsg){	
 		
 			$dt = new DataTier;
-			$results = $dt->Sel_ResetQuestions($sessionData->userName);
+			$results = $dt->Sel_ResetQuestions($sessionData->userId);
 			
 			if( $results["id"] == 0 )
 				if(empty($results["message"][0]))
@@ -62,7 +63,7 @@
 		function ValidateUser($password, $sessionData, $errorMsg){	
 		
 			$dt = new DataTier;
-			$results = $dt->Sel_Credentials($sessionData->userName);
+			$results = $dt->Sel_Credentials($sessionData->userId);
 			
 			if( $results["id"] == 0 )
 				if(empty($results["message"][0]) || $results["message"][0]["Password"] != $password)

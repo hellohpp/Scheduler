@@ -13,7 +13,7 @@
 				$query = $da->GetSproc("upd_ResetPassword");
 				
 				if( $stmt = $con->prepare( $query ) ){
-					$stmt->bind_param( "ss", $username, $password ); 
+					$stmt->bind_param( "ss", $password, $username ); 
 					$result = $stmt->execute();
 					$this->CloseDBConnection( $con );
 					

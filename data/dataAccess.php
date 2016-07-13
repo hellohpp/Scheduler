@@ -4,7 +4,7 @@
 		function GetSproc($sprocNum){
 			switch($sprocNum){
 				case "upd_ResetPassword":
-					return "UPDATE otsys.credentials SET `Password` = 'Wilson13' WHERE UserName = ?";
+					return "UPDATE otsys.credentials SET `Password` = ? WHERE UserName = ?";
 				case "ins_SessionEvent":
 					return "INSERT INTO `otsys`.`user_events` (UserId, PageId, EventId, CreatedBy) SELECT ( SELECT UserId FROM otsys.credentials WHERE UserName = ? ), 
 						( SELECT Id FROM otsys.pages WHERE Abbr = ? ), ( SELECT Id FROM otsys.events WHERE Abbr = ? ), ( SELECT UserId FROM otsys.credentials WHERE UserName = ? );";

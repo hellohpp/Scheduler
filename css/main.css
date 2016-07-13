@@ -9,6 +9,10 @@ header .navbar-inverse{
 header .navbar-inverse .navbar-brand, header .navbar-inverse .navbar-nav > li > a{
 	color: #ddd
 }
+header .navbar-inverse .navbar-nav > li > a.active, header .navbar-inverse .navbar-nav > li > a.active > span.glyphicon{
+	color: #ffffe0;
+	text-decoration: underline;
+}
 .row-fluid.buttons{
 	padding: 5px 0px;
 }

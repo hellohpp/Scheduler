@@ -3,9 +3,6 @@
 <div class="row-fluid logo">
 	[pic]<img src="images/policelogo.png" class="img" alt="Police Logo"/>
 </div>
-<div id="instructions" class="row-fluid">
-
-</div>
 <form class="col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-10" ng-show="ShowPanel() == 'username'">
 	<div class="form-group">		
 		<label for="email">Username</label>
@@ -22,7 +19,7 @@
 	</div>
 </form>
 
-<form class="col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10" ng-show="ShowPanel() == 'showQuestions'">
+<form class="col-sm-offset-4 col-sm-4 col-xs-offset-1 col-xs-10" ng-show="ShowPanel() == 'showQuestions'">
 	<div class="form-group" data-ng-repeat="question in resetQuestions">
 		<label for="question{{question.id}}">{{question.name}}</label>
 		<input type="input" class="form-control" id="question{{question.id}}" ng-model="question.answer"></input>
