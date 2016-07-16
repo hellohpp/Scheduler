@@ -1,0 +1,311 @@
+﻿/***
+*   Header
+***/
+.available-header{
+    height:100px;
+    margin: 0px;
+    padding: 10px 3%;
+    border-top: 3px inset #96928D;
+    border-bottom: 3px inset #96928D;
+    background-color: #9A9691;
+}
+
+div.week-tabs{
+    margin: 0px auto;
+    padding-top:5px;
+    width: 100%;
+}
+div.week-tabs > div{
+    float: left;
+    height: 80px;
+    width:49.1%;
+    background-color:#FFF;
+    padding-top: 10px;
+}
+div.week-tabs > .tab1{
+    border-top: 2px solid #9B8F74;
+    border-top-left-radius: 2px;
+    border-bottom: 2px solid #9B8F74;
+    border-bottom-left-radius: 2px;
+    border-left: 2px solid #9B8F74;
+}
+div.week-tabs > .tab2{
+    border-top: 2px solid #9B8F74;
+    border-top-right-radius: 2px;
+    border-bottom: 2px solid #9B8F74;
+    border-bottom-right-radius: 2px;
+    border-right: 2px solid #9B8F74;
+}
+div.week-tabs > div.active{
+    background-color:#B8A16F;
+}
+div.week-tabs > div.active a {
+    color: #FFF;
+    text-decoration: none;
+    font-weight:bold;
+    text-align:center;
+    display:block;
+}
+div.week-tabs > div a {
+    color: #B8A16F;
+    text-decoration: none;
+    font-weight:bold;
+    font-size: 3em;
+    text-align:center;
+    display:block;
+    padding-top:5px;
+}
+
+/***
+*   Content
+***/
+.content{
+    background:#000;
+    clear:both;
+    padding:10px 7px;
+}
+ul.week-list{
+    list-style-type: none;
+    width:100%;
+    margin:0px;
+    padding:0px;
+    background-color:#FFF;
+}
+ul.week-list > li{
+    border-bottom: 2px solid #222;
+    color:#B8A16F;
+    text-align: center;
+    text-transform:capitalize;
+    font-weight:bold;
+    height:100%;
+}
+label.day-title {
+    padding: 40px 0px 30px 0px;
+    margin-right: 10px;
+    display: block;
+    background:  #fff url("../images/arrow-gold.png") no-repeat right;
+    height:150px;
+    font-size: 7em;
+}
+label.day-name{
+    display: block;
+    color: #AEC8BE;
+    background:  #fff url("../images/arrow-turquoise.png") no-repeat right;
+}
+.row.weather-item{
+    margin-top: 0px;
+    overflow: hidden;
+    background-color:#AEC8BE;
+    height:400;
+    clear:both;
+    color:white;
+    font-weight:normal;
+    display:block;
+    width:100%;
+}
+.row.weather-item.top-border{
+    border-top: 2px solid #222;
+}
+.weather-item .cell .weather-icon{
+    height: 150px;
+    text-align: center;
+}
+.weather-item .cell{
+    float:left;
+    padding:0px;
+	margin: 0px;
+}
+.alignRight{
+    margin-right : 20px;
+float:right;
+}
+.alignLeft{
+    margin: 20px;
+float:left;
+font-size: 200%;
+}
+.weather-item .cell:nth-child(2){
+    width: 50%;
+}
+
+.cell.temperature, .cell.time{
+    padding: 37px 0px 0px 0px;
+    margin:0px;
+    font-size: 4.2em;
+}
+
+.box{
+    width: 50%;
+    background-color: #999999;
+    margin:0 auto;
+    font-size: 150%;
+}
+
+/***
+*   Default Text 
+***/
+input {
+    width:85%;
+    max-width:85%;
+    font-size:20px%;
+    height:200%
+}
+/***
+*   Dividers 
+***/
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 2px;
+    width: 90%;
+} 
+
+/***
+*   Buttons
+***/
+.onoffswitch {
+    float:right;
+    position: relative; 
+    width: 64px;
+    margin-top:55px;
+    border-radius:20px;
+    border: 2px solid #999999; 
+    -webkit-user-select:none; 
+    -moz-user-select:none; 
+    -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    text-align: right;
+    display: none;
+}
+label.onoffswitch-label {
+    display: block; 
+    overflow: hidden; 
+    cursor: pointer;
+    border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; 
+    width: 200%; 
+    margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; 
+    -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; 
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; 
+    float: left; 
+    width: 50%; 
+    height: 42px; 
+    padding: 0; 
+    line-height: 30px;
+    font-size: 14px;
+    color: white; 
+    font-family: Trebuchet, Arial, sans-serif; 
+    font-weight: bold;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "";
+    padding-left: 7px;
+    background-color: #FFF; 
+    color: #999;
+    text-align:left;
+}
+.onoffswitch-inner:after {
+    content: "";
+    padding-right: 7px;
+    background-color: #FFF; 
+    color: #999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; 
+    width: 30px; 
+    height:30px;
+    margin: 4px;
+    background-color: #FF0000;
+    border: 2px solid #999999; 
+    border-radius: 20px;
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    right: 24px;
+    -moz-transition: all 0.3s ease-in 0s; 
+    -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; 
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+    background: #FFFFFF;
+}
+
+/***
+*   Media Query
+***/
+@media (min-width: 620px) and (max-width: 790px) {
+    div.week-tabs > div a {
+        font-size: 2.5em;
+        padding-top: 10px;
+    }
+
+    .cell.temperature, .cell.time {
+        padding-top: 42px;
+        font-size: 3.9em;
+    }
+
+    .weather-item .cell:first-child {
+        width: 20%;
+    }
+
+    .weather-item .cell:nth-child(2) {
+        width: 40%;
+    }
+
+    .weather-item .cell:nth-child(n+3) {
+        width: 20%;
+    }
+
+    label.day-title {
+        font-size: 6.0em;
+    }
+}
+@media only screen and (max-width: 619px) {
+    div.week-tabs > div a{
+        font-size          :    2em;
+        padding-top        :    15px;
+    }
+    .cell.temperature, .cell.time{
+        padding-top: 47px;
+        font-size: 3.3em;
+    }
+    .weather-item .cell:first-child{
+        width: 20%;
+    }
+    .weather-item .cell:nth-child(2){
+        width: 40%;
+    }
+    .weather-item .cell:nth-child(n+3){
+        width: 20%;
+    }
+    .weather-item .cell .weather-icon{
+        margin-top:20px;
+        height: 120px;
+        width: 120px
+    }
+    label.day-title{
+        font-size: 4.3em;
+        padding-top: 60px
+    }
+}

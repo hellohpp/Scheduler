@@ -22,8 +22,47 @@ app.config(function($routeProvider, $locationProvider) {
 /***
 *	Dashboard Controller
 ***/
-app.controller('DashboardCtrl', function($scope, $http, locationHandler, $location, userSession) {
+app.controller('DashboardCtrl', function($scope, $location, locationHandler, userSession) {
 	
+	var date = new Date();
+	var day = date.getDate();
+	var monthIndex = date.getMonth();
+	var year = date.getFullYear();
+	
+	var daysOftheMonth = [];
+	for( var i = 1; i <= new Date(year, monthIndex + 1, 0).getDate(); i++ )
+		daysOftheMonth.push(i);	
+	$scope.getDays = {
+		availableOptions : daysOftheMonth,
+		selectedOption : day
+	};
+	
+	var monthNames = [ 
+		{ id: '1', name: "January" },
+		{ id: '2', name: "February" },
+		{ id: '3', name: "March" },
+		{ id: '4', name: "April" },
+		{ id: '5', name: "May" },
+		{ id: '6', name: "June" },
+		{ id: '7', name: "July" },
+		{ id: '8', name: "August" },
+		{ id: '9', name: "September" },
+		{ id: '10', name: "October" },
+		{ id: '11', name: "November" },
+		{ id: '12', name: "December" } 
+	];
+	$scope.getMonths = { 
+		availableOptions : monthNames,
+		selectedOption : monthNames[monthIndex]
+	}
+
+	var years = [];
+	for( var i = year - 4; i <= year + 5; i++ )
+		years.push(i);	
+	$scope.getYears =  {
+		availableOptions : years,
+		selectedOption : year
+	};	
 });
 
 /***
