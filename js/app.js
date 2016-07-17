@@ -23,7 +23,13 @@ app.config(function($routeProvider, $locationProvider) {
 *	Dashboard Controller
 ***/
 app.controller('DashboardCtrl', function($scope, $location, locationHandler, userSession) {
-	
+	Date.prototype.addDays = function(days)
+	{
+		var dat = new Date(this.valueOf());
+		dat.setDate(dat.getDate() + days);
+		return dat;
+	}
+
 	var date = new Date();
 	var day = date.getDate();
 	var monthIndex = date.getMonth();
@@ -63,6 +69,25 @@ app.controller('DashboardCtrl', function($scope, $location, locationHandler, use
 		availableOptions : years,
 		selectedOption : year
 	};	
+	
+	var getMonthData = function(){	
+		var monthData = [];
+		var date = new Date();
+		var monthIndex = date.getMonth();
+		var year = date.getFullYear();
+		var firstDayofCalendar = new Date(year, monthIndex, 1);
+		
+		//What date is the first sunday of the month?
+		firstDayofCalendar.setDate((1 - firstDayofCalendar.getDay()));
+		
+		for(var i=0; i < (7*6); i++){
+			monthData.push({id : i, day : firstDayofCalendar.addDays(i).getDate()})
+		} 
+		
+		return monthData;	
+	}
+	
+	$scope.getMonthData = getMonthData();
 });
 
 /***

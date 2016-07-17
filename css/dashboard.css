@@ -1,6 +1,5 @@
 ﻿div.row.calendar-heading{	
 	text-align : center;
-	border-bottom : 1px solid #ddd;
 	padding-bottom: 15px;
 }
 div.row.calendar-heading  span.glyphicon{		
@@ -20,6 +19,12 @@ div.row.calendar-heading span#calendarDate:hover{
 }
 div.row.calendar-heading .calendar-filters{
 	padding-top: 15px;
+}
+div.row-fluid.calendar .day-block{
+	float : left;
+	width : 14.28571428571429%;
+	height : 90px;
+	border : 1px solid #ccc;
 }
 /***			Media Queries 			***/
 @media only screen and (min-width : 380px) and (max-width : 510px){
