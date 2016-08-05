@@ -1,4 +1,7 @@
-﻿header{
+﻿body{
+	min-width: 380px;
+}
+header{
 	background-color: #003366;
 	width:100%;
 }
@@ -6,12 +9,21 @@ header .navbar-inverse{
 	background-color: #003366;
 	background-image: none;
 }
+nav.navbar{
+	margin-bottom: 0px;
+}
 header .navbar-inverse .navbar-brand, header .navbar-inverse .navbar-nav > li > a{
 	color: #ddd
 }
-header .navbar-inverse .navbar-nav > li > a.active, header .navbar-inverse .navbar-nav > li > a.active > span.glyphicon{
+header .navbar-inverse .navbar-nav > li > a > span.glyphicon{
+	margin-right: 5px;
+}
+header .navbar-inverse .navbar-nav > li > a.active{
 	color: #ffffe0;
 	text-decoration: underline;
+}
+header .navbar-inverse .navbar-nav > li > a.active > span.glyphicon{
+	text-decoration: none;
 }
 .row-fluid.buttons{
 	padding: 5px 0px;

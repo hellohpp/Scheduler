@@ -23,8 +23,11 @@ app.config(function($routeProvider, $locationProvider) {
 *	Dashboard Controller
 ***/
 app.controller('DashboardCtrl', function($scope, $location, locationHandler, userSession) {
-	Date.prototype.addDays = function(days)
-	{
+
+	$scope.isActiveView = function(id){	
+	}	// End function	
+	
+	Date.prototype.addDays = function(days){
 		var dat = new Date(this.valueOf());
 		dat.setDate(dat.getDate() + days);
 		return dat;
@@ -44,18 +47,18 @@ app.controller('DashboardCtrl', function($scope, $location, locationHandler, use
 	};
 	
 	var monthNames = [ 
-		{ id: '1', name: "January" },
-		{ id: '2', name: "February" },
-		{ id: '3', name: "March" },
-		{ id: '4', name: "April" },
-		{ id: '5', name: "May" },
-		{ id: '6', name: "June" },
-		{ id: '7', name: "July" },
-		{ id: '8', name: "August" },
-		{ id: '9', name: "September" },
-		{ id: '10', name: "October" },
-		{ id: '11', name: "November" },
-		{ id: '12', name: "December" } 
+		{ id: '1', name: "January", value: 0 },
+		{ id: '2', name: "February", value: 1 },
+		{ id: '3', name: "March", value: 2 },
+		{ id: '4', name: "April", value: 3 },
+		{ id: '5', name: "May", value: 4 },
+		{ id: '6', name: "June", value: 5 },
+		{ id: '7', name: "July", value: 6 },
+		{ id: '8', name: "August", value: 7 },
+		{ id: '9', name: "September", value: 8 },
+		{ id: '10', name: "October", value: 9 },
+		{ id: '11', name: "November", value: 10 },
+		{ id: '12', name: "December", value: 11 } 
 	];
 	$scope.getMonths = { 
 		availableOptions : monthNames,
@@ -63,31 +66,38 @@ app.controller('DashboardCtrl', function($scope, $location, locationHandler, use
 	}
 
 	var years = [];
-	for( var i = year - 4; i <= year + 5; i++ )
+	for( var i = year - 2; i <= year + 3; i++ )
 		years.push(i);	
 	$scope.getYears =  {
 		availableOptions : years,
 		selectedOption : year
 	};	
 	
-	var getMonthData = function(){	
+	$scope.getMonthData = function(){	
 		var monthData = [];
-		var date = new Date();
-		var monthIndex = date.getMonth();
-		var year = date.getFullYear();
+		var monthIndex = $scope.getMonths.selectedOption.value;
+		var year = $scope.getYears.selectedOption;
 		var firstDayofCalendar = new Date(year, monthIndex, 1);
 		
 		//What date is the first sunday of the month?
-		firstDayofCalendar.setDate((1 - firstDayofCalendar.getDay()));
+		if(firstDayofCalendar.getDay() > 0)
+			firstDayofCalendar.setDate(1 - firstDayofCalendar.getDay());
+		else
+			firstDayofCalendar.setDate(-6);
 		
 		for(var i=0; i < (7*6); i++){
-			monthData.push({id : i, day : firstDayofCalendar.addDays(i).getDate()})
-		} 
-		
-		return monthData;	
+			if( monthIndex === firstDayofCalendar.addDays(i).getMonth() )
+				if( date.toDateString() === firstDayofCalendar.addDays(i).toDateString() )
+					monthData.push({id : i, day : firstDayofCalendar.addDays(i).getDate(), isToday : true, thisMonth : true});
+				else
+					monthData.push({id : i, day : firstDayofCalendar.addDays(i).getDate(), isToday : false, thisMonth : true})
+			else
+				monthData.push({id : i, day : firstDayofCalendar.addDays(i).getDate(), isToday : false, thisMonth : false});
+		} 		
+		$scope.monthData = monthData;	
 	}
 	
-	$scope.getMonthData = getMonthData();
+	$scope.getMonthData();
 });
 
 /***
