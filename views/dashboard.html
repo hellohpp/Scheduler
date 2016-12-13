@@ -3,32 +3,34 @@
 <div class="row calendar-heading">	
 	<div class="col-sm-6 col-xs-12 calendar-filters">
 		<h4 class="text-info">Select a Date: </h4>
-		<select name="month" id="selMonths" ng-change="getMonthData()" ng-options="option.name for option in getMonths.availableOptions track by option.id" ng-model="getMonths.selectedOption"></select>	
-		<select name="year" id="selYear" ng-change="getMonthData()" ng-options="option for option in getYears.availableOptions" ng-model="getYears.selectedOption"></select>
+		<select name="month" id="selMonths" ng-change="GetCalendarData()" ng-options="option.name for option in getMonths.availableOptions track by option.id" ng-model="getMonths.selectedOption"></select>		
+		<select name="day" id="selDays" ng-show="getViews.selectedOption == 'day'" ng-change="GetCalendarData()" ng-options="option for option in getDays.availableOptions" ng-model="getDays.selectedOption"></select>
+		<select name="week" id="selWeeks" ng-show="getViews.selectedOption == 'week'" ng-change="GetCalendarData()" ng-options="option.name for option in getWeeks.availableOptions track by option.value" ng-model="getWeeks.selectedOption"></select>
+		<select name="year" id="selYear" ng-change="GetCalendarData()" ng-options="option for option in getYears.availableOptions" ng-model="getYears.selectedOption"></select>
 	</div>		
 	<div class="col-sm-6 col-xs-12 calendar-view">
 		<h4 class="text-info">Select a View:</h4>
 		<ul class="nav nav-tabs">
-			<li ng-class="{active:true}"><a href="#"><span class="glyphicon glyphicon-th"></span>Month</a></li>
-			<li><a ng-click=""><span class="glyphicon glyphicon-th-large"></span>Week</a></li>
-			<li><a ng-click=""><span class="glyphicon glyphicon-list"></span>Day</a></li>
+			<li ng-class="{active: getViews.selectedOption == 'month'}"><a ng-click="ShowView('month')"><span class="glyphicon glyphicon-th"></span>Month</a></li>
+			<li ng-class="{active: getViews.selectedOption == 'week'}"><a ng-click="ShowView('week')"><span class="glyphicon glyphicon-th-large"></span>Week</a></li>
+			<li ng-class="{active: getViews.selectedOption == 'day'}"><a ng-click="ShowView('day')"><span class="glyphicon glyphicon-list"></span>Day</a></li>
 		</ul>		
 		
 	</div>
 	
 </div>
-<div class="container-fluid calendar">
+<div class="container-fluid calendar" ng-hide="getViews.selectedOption == 'day'">
 	<div class="row">
 		<div class="col-xs-1">
-			<span class="glyphicon glyphicon-chevron-left"></span>
+			<span class="glyphicon glyphicon-chevron-left" ng-click="MoveCalendarBackward()"></span>
 		</div>	
 		<div class="col-xs-10">
-			<div class="day-block" ng-repeat="date in monthData track by date.id" ng-class="{active: date.isToday, thisMonth: date.thisMonth}">
+			<div class="day-block" ng-repeat="date in calendarData track by date.id" ng-class="{active: date.isToday, thisMonth: date.thisMonth}">
 				<span class="day-name">{{date.day}}</span>
 			</div>	
 		</div>	
 		<div class="col-xs-1">
-			<span class="glyphicon glyphicon-chevron-right">&nbsp;</span>
+			<span class="glyphicon glyphicon-chevron-right" ng-click="MoveCalendarForward()">&nbsp;</span>
 		</div>
 	</div>
 </div>
