@@ -5,3 +5,5 @@
 2016-07-12 11:48:42 - Ins_SessionEvent function failed to insert event into database : Failed to execute SQL statement.
 2016-07-12 11:51:09 - Ins_SessionEvent function failed to insert event into database : Failed to execute SQL statement.
 2016-07-12 11:52:19 - Ins_SessionEvent function failed to insert event into database : Failed to execute SQL statement.
+2017-01-08 06:24:07 - Sel_Credentials function failed to connect to database : Failed to connect to database.
+2017-01-08 06:24:49 - Sel_Credentials function failed to connect to database : Failed to connect to database.
