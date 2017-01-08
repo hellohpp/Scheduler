@@ -28,7 +28,7 @@ app.config(function($routeProvider, $locationProvider) {
 ***/
 app.controller('AdminCtrl', function($scope, locationHandler, userSession) {	
 
-}	// End Admin Controller
+});// End Admin Controller
 
 app.controller('DashboardCtrl', function($scope, $location, locationHandler, userSession) {	
 	// Constant variables
