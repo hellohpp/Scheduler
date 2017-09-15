@@ -80,13 +80,13 @@ INSERT INTO `credentials` VALUES (1,'jwilson0206@gmail.com','Wilson13',1,'',1,'
 UNLOCK TABLES;
 
 --
--- Table structure for table `events`
+-- Table structure for table `system_events`
 --
 
-DROP TABLE IF EXISTS `events`;
+DROP TABLE IF EXISTS `system_events`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `events` (
+CREATE TABLE `system_events` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) NOT NULL,
   `Abbr` varchar(15) NOT NULL,
@@ -97,13 +97,13 @@ CREATE TABLE `events` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `events`
+-- Dumping data for table `system_events`
 --
 
-LOCK TABLES `events` WRITE;
-/*!40000 ALTER TABLE `events` DISABLE KEYS */;
-INSERT INTO `events` VALUES (1,'Login','Login'),(2,'Reset Questions','ResetQuestions'),(3,'Validate Answers','ValidateAnswers'),(4,'Reset Password','ResetPassword');
-/*!40000 ALTER TABLE `events` ENABLE KEYS */;
+LOCK TABLES `system_events` WRITE;
+/*!40000 ALTER TABLE `system_events` DISABLE KEYS */;
+INSERT INTO `system_events` VALUES (1,'Login','Login'),(2,'Reset Questions','ResetQuestions'),(3,'Validate Answers','ValidateAnswers'),(4,'Reset Password','ResetPassword');
+/*!40000 ALTER TABLE `system_events` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -134,13 +134,13 @@ INSERT INTO `pages` VALUES (1,'Login','login'),(2,'Reset Password','reset'),(3,'
 UNLOCK TABLES;
 
 --
--- Table structure for table `questions`
+-- Table structure for table `password_questions`
 --
 
-DROP TABLE IF EXISTS `questions`;
+DROP TABLE IF EXISTS `password_questions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `questions` (
+CREATE TABLE `password_questions` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL,
   `Abbr` varchar(8) NOT NULL,
@@ -151,13 +151,13 @@ CREATE TABLE `questions` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `questions`
+-- Dumping data for table `password_questions`
 --
 
-LOCK TABLES `questions` WRITE;
-/*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (1,'What is your childhood street?','street'),(2,'What is the name of your first pet?','pet'),(3,'What is your mother\'s maiden name?','mother');
-/*!40000 ALTER TABLE `questions` ENABLE KEYS */;
+LOCK TABLES `password_questions` WRITE;
+/*!40000 ALTER TABLE `password_questions` DISABLE KEYS */;
+INSERT INTO `password_questions` VALUES (1,'What is your childhood street?','street'),(2,'What is the name of your first pet?','pet'),(3,'What is your mother\'s maiden name?','mother');
+/*!40000 ALTER TABLE `password_questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -235,14 +235,18 @@ CREATE TABLE `user_events` (
   `PageId` int(11) NOT NULL,
   `EventId` int(11) NOT NULL,
   `CreatedBy` int(11) NOT NULL,
-  `CreatedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreatedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,,
+  `UpdatedBy` int(11) DEFAULT NULL,
+  `UpdatedDate` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`),
   KEY `user_events_userId_idx` (`UserId`),
   KEY `user_events_eventId_idx` (`EventId`),
   KEY `user_events_createdBy_idx` (`CreatedBy`),
+  KEY `user_events_updatedBy_idx` (`UpdatedBy`),
   KEY `user_events_pageId_idx` (`PageId`),
   CONSTRAINT `user_events_createdBy` FOREIGN KEY (`CreatedBy`) REFERENCES `users` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `user_events_eventId` FOREIGN KEY (`EventId`) REFERENCES `events` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `user_events_updatedBy FOREIGN KEY (`UpdatedBy`) REFERENCES `users` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `user_events_eventId` FOREIGN KEY (`EventId`) REFERENCES `system_events` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `user_events_pageId` FOREIGN KEY (`PageId`) REFERENCES `pages` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `user_events_userId` FOREIGN KEY (`UserId`) REFERENCES `users` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
@@ -282,7 +286,7 @@ CREATE TABLE `user_questions` (
   KEY `CreatedBy_idx` (`CreatedBy`),
   KEY `UpdatedBy_idx` (`UpdatedBy`),
   CONSTRAINT `User_Questions_CreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `users` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `User_Questions_QuestionId` FOREIGN KEY (`QuestionId`) REFERENCES `questions` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `User_Questions_QuestionId` FOREIGN KEY (`QuestionId`) REFERENCES `password_questions` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `User_Questions_UpdatedBy` FOREIGN KEY (`UpdatedBy`) REFERENCES `users` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `User_Questions_UserId` FOREIGN KEY (`UserId`) REFERENCES `users` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
