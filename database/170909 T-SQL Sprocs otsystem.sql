@@ -1,4 +1,4 @@
-USE [OTSystem]
+USE [otsystem]
 GO
 DROP PROCEDURE [dbo].[Ins_Upd_User_Credentials]
 DROP PROCEDURE [dbo].[Sel_User_Credentials]

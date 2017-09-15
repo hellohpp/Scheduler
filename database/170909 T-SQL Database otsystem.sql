@@ -1,3 +1,5 @@
+USE otsystem
+GO
 DROP TABLE System_Log
 DROP TABLE User_Credentials;
 DROP TABLE User_Questions;
